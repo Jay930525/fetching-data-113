@@ -8,8 +8,24 @@
 
 <script>
 
+    // 設計一個函數，用來顯示 HTML 內容
+    // 這個函數會接收一個 HTML 字串作為參數
+    // 並將這個字串顯示在 id="demo" 的元素中
+    // 這個函數會被 fetchFile() 函數呼叫
+    // fetchFile() 函數會使用 fetch() 方法來取得檔案的內容
+    // fetchFile() 函數會使用 async/await 語法來處理非同步操作
+    // fetchFile() 函數會使用 try/catch 語法來處理錯誤
+    function displayHTML(html) {
+        document.getElementById("demo").innerHTML = html;
+    }
 
+    async function  fetchFile(url, callback) {
+        let response = await fetch(url);
+        let html = await response.text();
+        callback(html);
+    }
 
+    fetchFile("mycar.html", displayHTML);
 </script>
 
 </body>

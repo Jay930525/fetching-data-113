@@ -6,8 +6,28 @@
 <p id="demo">Fetch a file to change this text.</p>
 
 <script>
-
-
+    // 設計一個 function
+    // 這個 function 會接收一個檔案名稱
+    // 並且使用 fetch() 方法來取得這個檔案的內容
+    // 如果成功取得檔案，則將檔案內容顯示在 id="demo" 的元素中
+    // 如果發生錯誤，則顯示錯誤訊息
+    // 這個 function 會使用 async/await 語法來處理非同步操作
+    // 這個 function 會使用 try/catch 語法來處理錯誤
+    // 這個 function 會使用 fetch() 方法來取得檔案的內容
+    async function fetchFile(file){
+        try{
+            const response = await fetch(file);
+            if(!response.ok){
+                throw new Error("HTTP error " + response.status);
+            }
+            const data = await response.text();
+            document.getElementById("demo").innerText = data;
+        }
+        catch (error){}
+        console.error("There has been a problem with your fetch operation: " + error.message);
+    }
+    // 呼叫 fetchFile() 函數，並傳入檔案名稱
+    fetchFile("fetch_info.txt");
 
 </script>
 
